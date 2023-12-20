@@ -332,14 +332,14 @@ overlay.addEventListener('click', () => {
     }, 300);
 });
 
-orderButton.addEventListener("click", function () {
-    document.getElementById("error").textContent = '';
+$("#order").click(function () {
+    $("#error").text('');
 
-    let name = document.getElementById("user_name").value;
-    let email = document.getElementById("user_email").value;
-    let phone = document.getElementById("user_phone").value;
-    let koment = document.getElementById("user_koment").value;
-    
+    let name = $("#user_name").val();
+    let email = $("#user_email").val();
+    let phone = $("#user_phone").val();
+    let koment = $("#user_koment").val();
+
     // Собираем данные из корзины
     let cartData = [];
     Object.keys(listCards).forEach((productKey) => {
@@ -357,11 +357,11 @@ orderButton.addEventListener("click", function () {
 
     // Проверка данных
     if (name.length < 5) {
-        document.getElementById("error").textContent = "Ошибка в имени";
+        $("#error").text("Ошибка в имени");
         return;
     }
     if (phone.length < 5) {
-        document.getElementById("error").textContent = "Ошибка в номере телефона";
+        $("#error").text("Ошибка в номере телефона");
         return;
     }
 
@@ -390,3 +390,4 @@ function getTotalPrice() {
     });
     return totalSum;
 }
+
