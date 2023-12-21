@@ -361,8 +361,11 @@ order.addEventListener("click", () => {
         koment: koment
     };
 
-    // Отправка данных в Telegram
-    tg.sendData(JSON.stringify(data));
-    tg.close();
+    await tg.sendData(JSON.stringify(data));
+        await tg.setMessage("Data from the 'Открыть магазин' button was transferred to the bot.");
+        await tg.close();
+    } catch (error) {
+        console.error("Error while processing the order:", error);
+    }
 });
 
