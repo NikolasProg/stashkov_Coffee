@@ -358,9 +358,7 @@ order.addEventListener("click", () => {
         name: name,
         email: email,
         phone: phone,
-        koment: koment,
-        items: 0, // Передаем данные из корзины
-        total: 0 // Получаем общую сумму заказа из функции getTotalPrice
+        koment: koment
     };
 
     // Отправка данных в Telegram
