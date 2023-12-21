@@ -336,18 +336,6 @@ let tg = window.Telegram.WebApp;
 let order = document.getElementById("order");
 tg.expand();
 
-// Функция для получения общей суммы заказа
-function getTotalPrice() {
-    let totalSum = 0;
-    Object.keys(listCards).forEach((productKey) => {
-        const value = listCards[productKey];
-        if (value != null) {
-            totalSum += value.price * value.quantity;
-        }
-    });
-    return totalSum;
-}
-
 order.addEventListener("click", () => {
     document.getElementById("error").textContent = '';
 
@@ -355,21 +343,6 @@ order.addEventListener("click", () => {
     let email = document.getElementById("user_email").value;
     let phone = document.getElementById("user_phone").value;
     let koment = document.getElementById("user_koment").value;
-
-    // Собираем данные из корзины
-    let cartData = [];
-    Object.keys(listCards).forEach((productKey) => {
-        const value = listCards[productKey];
-        if (value != null) {
-            cartData.push({
-                name: value.name,
-                price: value.price,
-                volume: value.selectedVolume,
-                quantity: value.quantity,
-                total: value.price * value.quantity
-            });
-        }
-    });
 
     // Проверка данных
     if (name.length < 5) {
