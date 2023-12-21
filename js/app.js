@@ -332,13 +332,29 @@ overlay.addEventListener('click', () => {
     }, 300);
 });
 
-$("#order").click(function () {
-    $("#error").text('');
+let tg = window.Telegram.WebApp;
+let order = document.getElementById("order");
+tg.expand();
 
-    let name = $("#user_name").val();
-    let email = $("#user_email").val();
-    let phone = $("#user_phone").val();
-    let koment = $("#user_koment").val();
+// Функция для получения общей суммы заказа
+function getTotalPrice() {
+    let totalSum = 0;
+    Object.keys(listCards).forEach((productKey) => {
+        const value = listCards[productKey];
+        if (value != null) {
+            totalSum += value.price * value.quantity;
+        }
+    });
+    return totalSum;
+}
+
+order.addEventListener("click", () => {
+    document.getElementById("error").textContent = '';
+
+    let name = document.getElementById("user_name").value;
+    let email = document.getElementById("user_email").value;
+    let phone = document.getElementById("user_phone").value;
+    let koment = document.getElementById("user_koment").value;
 
     // Собираем данные из корзины
     let cartData = [];
@@ -357,11 +373,11 @@ $("#order").click(function () {
 
     // Проверка данных
     if (name.length < 5) {
-        $("#error").text("Ошибка в имени");
+        document.getElementById("error").textContent = "Ошибка в имени";
         return;
     }
     if (phone.length < 5) {
-        $("#error").text("Ошибка в номере телефона");
+        document.getElementById("error").textContent = "Ошибка в номере телефона";
         return;
     }
 
@@ -378,16 +394,4 @@ $("#order").click(function () {
     tg.sendData(JSON.stringify(data));
     tg.close();
 });
-
-// Функция для получения общей суммы заказа
-function getTotalPrice() {
-    let totalSum = 0;
-    Object.keys(listCards).forEach((productKey) => {
-        const value = listCards[productKey];
-        if (value != null) {
-            totalSum += value.price * value.quantity;
-        }
-    });
-    return totalSum;
-}
 
