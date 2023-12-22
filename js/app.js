@@ -361,11 +361,7 @@ order.addEventListener("click", () => {
         koment: koment
     };
 
-    await tg.sendData(JSON.stringify(data));
-        await tg.setMessage("Data from the 'Открыть магазин' button was transferred to the bot.");
-        await tg.close();
-    } catch (error) {
-        console.error("Error while processing the order:", error);
-    }
+    tg.sendData(JSON.stringify(data));
+    tg.close();
 });
 
