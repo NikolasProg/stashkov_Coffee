@@ -332,34 +332,38 @@ overlay.addEventListener('click', () => {
     }, 300);
 });
 
-let tg = window.Telegram.WebApp;
-let order = document.getElementById("order");
-tg.expand();
+order.click(function () {
+        $("#error").text('');
+        var name = $("#user_name").val();
+        var email = $("#user_email").val();
+        var phone = $("#user_phone").val();
+        var koment = $("#user_koment").val();
 
-order.addEventListener("click", () => {
-    document.getElementById("error").textContent = '';
+        if (name.length < 5) {
+            $("#error").text("Ошибка в имени");
+            return;
+        }
+        if (email.length < 5) {
+            $("#error").text("Ошибка в email");
+            return;
+        }
+        if (phone.length < 5) {
+            $("#error").text("Ошибка в номере телефона");
+            return;
+        }
 
-    let name = document.getElementById("user_name").value;
-    let email = document.getElementById("user_email").value;
-    let phone = document.getElementById("user_phone").value;
-    let koment = document.getElementById("user_koment").value;
+        var data = {
+            name: name,
+            email: email,
+            phone: phone,
+            koment: koment,
+            items: cartItems,
+            total: total
+        }
 
-    // Проверка данных
-    if (name.length < 5) {
-        document.getElementById("error").textContent = "Ошибка в имени";
-        return;
-    }
-    if (phone.length < 5) {
-        document.getElementById("error").textContent = "Ошибка в номере телефона";
-        return;
-    }
-
-    let data = {
-        name: name,
-        email: email,
-        phone: phone,
-        koment: koment
-    };
+        tg.sendData(JSON.stringify(data));
+        tg.close();
+    });
 
     tg.sendData(JSON.stringify(data));
     tg.close();
