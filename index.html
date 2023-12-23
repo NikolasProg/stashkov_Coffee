@@ -118,7 +118,7 @@ function getTotalPrice() {
     Object.keys(listCards).forEach((productKey) => {
         const value = listCards[productKey];
         if (value != null) {
-            totalSum += value.price * value.quantity;
+            totalSum += value.price;
         }
     });
     return totalSum;
