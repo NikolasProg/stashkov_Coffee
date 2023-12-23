@@ -69,6 +69,47 @@
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<script>
 	$(".phone_mask").mask("+7(999)999-99-99");
-        </script>
+
+	$(document).ready(function () {
+    let tg = window.Telegram.WebApp; // Используем Telegram.WebApp для объекта tg
+    let order = document.getElementById("order"); // Получаем элемент с id "order"
+
+    order.addEventListener("click", function () {
+        $("#error").text('');
+        var name = $("#user_name").val();
+        var email = $("#user_email").val();
+        var phone = $("#user_phone").val();
+        var koment = $("#user_koment").val();
+
+        if (name.length < 5) {
+            $("#error").text("Ошибка в имени");
+            return;
+        }
+        if (email.length < 5) {
+            $("#error").text("Ошибка в email");
+            return;
+        }
+        if (phone.length < 5) {
+            $("#error").text("Ошибка в номере телефона");
+            return;
+        }
+
+        var data = {
+            name: name,
+            email: email,
+            phone: phone,
+            koment: koment
+        }
+
+        tg.sendData(JSON.stringify(data));
+        tg.close();
+    });
+});
+
+// Предположим, что у вас есть объект tg для работы с Telegram API
+// Предположим, что tg.expand() нужно вызывать для расширения
+let tg = window.Telegram.WebApp;
+tg.expand();
+</script>
 </body>
 </html>
