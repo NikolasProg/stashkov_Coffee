@@ -69,6 +69,7 @@
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<script>
 	$(".phone_mask").mask("+7(999)999-99-99");
+	$(document).ready(function () {
 	order.click(function () {
         $("#error").text('');
         var name = $("#user_name").val();
@@ -99,6 +100,7 @@
         tg.sendData(JSON.stringify(data));
         tg.close();
     });
+});
         </script>
 </body>
 </html>
