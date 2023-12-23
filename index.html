@@ -70,9 +70,9 @@
 	<script>
 	$(".phone_mask").mask("+7(999)999-99-99");
 
-	$(document).ready(function () {
-    let tg = window.Telegram.WebApp; // Используем Telegram.WebApp для объекта tg
-    let order = document.getElementById("order"); // Получаем элемент с id "order"
+$(document).ready(function () {
+    let tg = window.Telegram.WebApp;
+    let order = document.getElementById("order");
 
     order.addEventListener("click", function () {
         $("#error").text('');
@@ -81,35 +81,49 @@
         var phone = $("#user_phone").val();
         var koment = $("#user_koment").val();
 
-        if (name.length < 5) {
-            $("#error").text("Ошибка в имени");
-            return;
-        }
-        if (email.length < 5) {
-            $("#error").text("Ошибка в email");
-            return;
-        }
-        if (phone.length < 5) {
-            $("#error").text("Ошибка в номере телефона");
-            return;
-        }
+        // Собираем данные из корзины
+        let cartData = [];
+        Object.keys(listCards).forEach((productKey) => {
+            const value = listCards[productKey];
+            if (value != null) {
+                cartData.push({
+                    name: value.name,
+                    price: value.price,
+                    volume: value.selectedVolume,
+                    quantity: value.quantity,
+                    total: value.price * value.quantity
+                });
+            }
+        });
 
         var data = {
             name: name,
             email: email,
             phone: phone,
-            koment: koment
-        }
+            koment: koment,
+            items: cartData,
+            total: getTotalPrice() // Предполагается, что getTotalPrice() возвращает общую сумму заказа
+        };
 
         tg.sendData(JSON.stringify(data));
         tg.close();
     });
 });
 
-// Предположим, что у вас есть объект tg для работы с Telegram API
-// Предположим, что tg.expand() нужно вызывать для расширения
 let tg = window.Telegram.WebApp;
 tg.expand();
+
+// Функция для получения общей суммы заказа
+function getTotalPrice() {
+    let totalSum = 0;
+    Object.keys(listCards).forEach((productKey) => {
+        const value = listCards[productKey];
+        if (value != null) {
+            totalSum += value.price * value.quantity;
+        }
+    });
+    return totalSum;
+}
 </script>
 </body>
 </html>
