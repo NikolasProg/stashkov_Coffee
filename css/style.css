@@ -200,16 +200,16 @@ select {
         margin-top: 10px;
     }
 	
-	header h1 {
-		margin-left: 20px;
-	}
-	
-	header .shopping img {
-        width: 30px;
-		margin-right: 20px;
+    header h1 {
+        margin-left: 20px;
     }
 	
-	header .shopping span {
+    header .shopping img {
+        width: 30px;
+	margin-right: 20px;
+    }
+	
+    header .shopping span {
         background: red;
         border-radius: 50%;
         display: flex;
@@ -220,7 +220,7 @@ select {
         top: -8px;
         right: -8px;
         padding: 3px 8px;
-		margin-right: 20px;
+	margin-right: 20px;
     }
 
     .list {
@@ -248,7 +248,7 @@ select {
         flex-grow: 1; /* Новое свойство для занимаемости всего доступного пространства */
     }
 	
-	.card {
+    .card {
         position: fixed;
         top: 0;
         left: 100%;
@@ -290,7 +290,7 @@ select {
     background-color: #fff;
     border-radius: 8px;
     z-index: 1000;	
-	width: 90%;
+    width: 90%;
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
@@ -307,14 +307,14 @@ select {
     display: block;
     width: 100%;
     box-sizing: border-box;
-	padding: 10px 15px;
+    padding: 10px 15px;
     margin-top: 10px;
 }
 #form button {
-	text-align: center;
+    text-align: center;
     display: block;
     margin: 10px auto;
-	background-color: #1C1F25;
+    background-color: #1C1F25;
     color: white;
     padding: 10px;
     cursor: pointer;
