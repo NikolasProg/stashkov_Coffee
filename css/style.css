@@ -330,6 +330,20 @@ select {
     font-weight: bold;
 }
 
+#form label p {
+    margin-left: 20px; /* Левый отступ для абзаца внутри label */
+}
+
+#form label ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#form label ul li {
+    margin-left: 20px; /* Левый отступ для каждого элемента списка внутри label */
+}
+
 #form label span {
     color: red;
 }
