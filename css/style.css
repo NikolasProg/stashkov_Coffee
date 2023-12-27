@@ -300,7 +300,7 @@ select {
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
-    text-align: center;
+    text-align: left;
     max-width: 400px;
     margin: 0 auto;
 }
